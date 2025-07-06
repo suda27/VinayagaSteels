@@ -5,16 +5,30 @@
       <p>Discover our comprehensive range of high-quality steel and furniture products</p>
     </div>
     
-    <div class="products-grid">
-      <div class="product-card" *ngFor="let product of products">
-        <div class="product-image">
-          <img [src]="product.image" [alt]="product.title">
-        </div>
-        <div class="product-content">
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.description }}</p>
+    <div class="products-carousel-container">
+      <button class="carousel-btn prev-btn" (click)="scrollLeft()" [class.disabled]="isAtStart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+      
+      <div class="products-carousel" #carousel>
+        <div class="product-card" *ngFor="let product of products">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.title">
+          </div>
+          <div class="product-content">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+          </div>
         </div>
       </div>
+      
+      <button class="carousel-btn next-btn" (click)="scrollRight()" [class.disabled]="isAtEnd">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
     </div>
     
     <div class="view-more-container">

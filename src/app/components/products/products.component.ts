@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,9 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent {
+export class ProductsComponent implements AfterViewInit {
+  @ViewChild('carousel') carousel!: ElementRef;
+  
   products: Product[] = [
     {
       id: 1,
@@ -55,7 +57,50 @@ export class ProductsComponent {
     }
   ];
 
+  isAtStart = true;
+  isAtEnd = false;
+
   constructor(private router: Router) {}
+
+  ngAfterViewInit() {
+    this.updateButtonStates();
+  }
+
+  scrollLeft() {
+    if (this.carousel) {
+      const scrollAmount = this.carousel.nativeElement.offsetWidth;
+      this.carousel.nativeElement.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+      
+      setTimeout(() => {
+        this.updateButtonStates();
+      }, 300);
+    }
+  }
+
+  scrollRight() {
+    if (this.carousel) {
+      const scrollAmount = this.carousel.nativeElement.offsetWidth;
+      this.carousel.nativeElement.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+      
+      setTimeout(() => {
+        this.updateButtonStates();
+      }, 300);
+    }
+  }
+
+  private updateButtonStates() {
+    if (this.carousel) {
+      const element = this.carousel.nativeElement;
+      this.isAtStart = element.scrollLeft <= 0;
+      this.isAtEnd = element.scrollLeft >= element.scrollWidth - element.offsetWidth - 1;
+    }
+  }
 
   viewMore() {
     this.router.navigate(['/products']);
