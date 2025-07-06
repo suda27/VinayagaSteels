@@ -1,0 +1,54 @@
+<div class="products-page">
+  <div class="page-header">
+    <div class="container">
+      <button class="back-btn" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12,19 5,12 12,5"></polyline>
+        </svg>
+        Back to Home
+      </button>
+      <h1>Our Products</h1>
+      <p>Explore our comprehensive range of high-quality steel and furniture products</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="category-filter">
+      <button 
+        *ngFor="let category of categories" 
+        class="category-btn" 
+        [class.active]="selectedCategory === category"
+        (click)="filterByCategory(category)">
+        {{ category }}
+      </button>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.title">
+          <div class="category-badge">{{ product.category }}</div>
+        </div>
+        <div class="product-content">
+          <h3>{{ product.title }}</h3>
+          <p class="description">{{ product.description }}</p>
+          
+          <div class="specifications" *ngIf="product.specifications">
+            <h4>Specifications:</h4>
+            <ul>
+              <li *ngFor="let spec of product.specifications">{{ spec }}</li>
+            </ul>
+          </div>
+          
+          <button class="enquire-btn">Enquire Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-products" *ngIf="filteredProducts.length === 0">
+      <h3>No products found in this category</h3>
+      <p>Please select a different category or contact us for custom requirements.</p>
+    </div>
+  </div>
+</div>
