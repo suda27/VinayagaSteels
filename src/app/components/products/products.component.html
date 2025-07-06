@@ -1,44 +1,19 @@
-<section class="products-section" id="products">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Products</h2>
-      <p>Discover our comprehensive range of high-quality steel and furniture products</p>
-    </div>
-    
-    <div class="products-carousel-container">
-      <button class="carousel-btn prev-btn" (click)="scrollLeft()" [class.disabled]="isAtStart">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15,18 9,12 15,6"></polyline>
-        </svg>
-      </button>
-      
-      <div class="products-carousel" #carousel>
-        <div class="product-card" *ngFor="let product of products">
-          <div class="product-image">
-            <img [src]="product.image" [alt]="product.title">
-          </div>
-          <div class="product-content">
-            <h3>{{ product.title }}</h3>
-            <p>{{ product.description }}</p>
-          </div>
-        </div>
+<div class="products-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="main-header">Our Products</h1>
+    <p class="sub-header">Discover our comprehensive range of high-quality steel and metal products</p>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image">
+        <img src="{{ product.image }}" [alt]="product.name" >
       </div>
-      
-      <button class="carousel-btn next-btn" (click)="scrollRight()" [class.disabled]="isAtEnd">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9,18 15,12 9,6"></polyline>
-        </svg>
-      </button>
-    </div>
-    
-    <div class="view-more-container">
-      <button class="view-more-btn" (click)="viewMore()">
-        View More Products
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12,5 19,12 12,19"></polyline>
-        </svg>
-      </button>
+      <div class="product-content">
+        <h3 class="product-title">{{ product.name }}</h3>
+      </div>
     </div>
   </div>
-</section>
+</div>
