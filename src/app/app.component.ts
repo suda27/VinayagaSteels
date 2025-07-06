@@ -16,5 +16,5 @@ import { GoToTopComponent } from './components/go-to-top/go-to-top.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Sri Vinayaga Steel Furniture';
+  title = 'Sri Vinayagar Steel Furniture';
 }
