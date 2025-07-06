@@ -1,0 +1,55 @@
+.go-to-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border: 3px solid white;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  opacity: 1;
+  transform: translateY(0);
+
+  &:hover {
+    background: linear-gradient(135deg, #f7931e, #ff6b35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+    width: 28px;
+    height: 28px;
+  }
+
+  &:hover svg {
+    transform: translateY(-2px);
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .go-to-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+} 
