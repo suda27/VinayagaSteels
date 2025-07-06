@@ -164,3 +164,27 @@
     }
   }
 }
+
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.view-more-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.view-more-btn:hover {
+  background: #217dbb;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}

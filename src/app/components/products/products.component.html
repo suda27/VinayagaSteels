@@ -7,13 +7,28 @@
 
   <!-- Products Grid -->
   <div class="products-grid">
-    <div class="product-card" *ngFor="let product of products">
-      <div class="product-image">
-        <img src="{{ product.image }}" [alt]="product.name" >
+    <ng-container *ngIf="isSmallScreen(); else allProducts">
+      <div class="product-card" *ngFor="let product of products | slice:0:3">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name" (error)="onImageError($event)">
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">{{ product.name }}</h3>
+        </div>
       </div>
-      <div class="product-content">
-        <h3 class="product-title">{{ product.name }}</h3>
+    </ng-container>
+    <ng-template #allProducts>
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name" (error)="onImageError($event)">
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">{{ product.name }}</h3>
+        </div>
       </div>
-    </div>
+    </ng-template>
+  </div>
+  <div class="view-more-container">
+    <button class="view-more-btn" routerLink="/products">View More Products</button>
   </div>
 </div>

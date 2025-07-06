@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 interface Product {
   id: number;
@@ -13,9 +14,9 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [
     {
       id: 1,
@@ -49,9 +50,27 @@ export class ProductsComponent implements OnInit {
     }
   ];
 
+  smallScreen: boolean = window.innerWidth <= 768;
+
   ngOnInit(): void {
-    // Component initialization
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   }
 
- 
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.smallScreen = window.innerWidth <= 768;
+  };
+
+  onImageError(event: any): void {
+    // Set a default image when the product image fails to load
+    event.target.src = 'assets/welding.jpg';
+  }
+
+  isSmallScreen(): boolean {
+    return this.smallScreen;
+  }
 }
